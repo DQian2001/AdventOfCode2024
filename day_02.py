@@ -21,10 +21,9 @@ def solvePart2( mtx ):
                np.isin( dif, [ 1, 2, 3 ] ).all() +
                np.isin( dif, [ -1, -2, -3 ] ).all() for dif in map(
                      np.diff,
-                     # List comprehension to calculate "leave one out" per data list.
-                     # This results in a list of lists, where each element is a list
+                     # Results in a generator, where each element is a list
                      # missing one value from the data list.
-                     [ data[ : i ] + data[ i + 1 : ] for i in range( len( data ) ) ]
+                     ( data[ : i ] + data[ i + 1 : ] for i in range( len( data ) ) )
                )
          ) for data in mtx
    )
